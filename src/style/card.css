@@ -1,0 +1,31 @@
+.card {
+    display: inline-block;
+    margin: 0 auto;
+    height: auto;
+    width: 300px;
+    background: #ffa974;
+    border-radius: 10px;
+    margin: 10px;
+    transition: 0.5s;
+}
+.card:hover {
+    transform: scale(1.03);
+}
+
+.card-title {
+    padding: 15px 0px 10px 0px;
+}
+.card-text {
+    padding: 5px;
+}
+.card-btn {
+    padding: 8px;
+    margin: 10px;
+    border-radius: 5px;
+    background: rgb(86, 202, 202);
+    transition: 0.4s;
+}
+.card-btn:hover {
+    background: #53e473;
+    transform: scale(1.05);
+}
