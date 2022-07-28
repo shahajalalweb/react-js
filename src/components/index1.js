@@ -2,24 +2,52 @@ import React, { useState } from "react";
 import style from "../style/style.module.css";
 
 export default function From1() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // { simple state
+
+  //   const [name, setName] = useState("");
+  //   const [email, setEmail] = useState("");
+  //   const [password, setPassword] = useState("");
+
+  //   const handleNameChange = (e) => {
+  //     setName(e.target.value);
+  //   };
+
+  //   const handleEmailChange = (e) => {
+  //     setEmail(e.target.value);
+  //   };
+
+  //   const handlePasswordChange = (e) => {
+  //     setPassword(e.target.value);
+  //   };
+
+  //   const handleSubmit = (e) => {
+  //     console.log(name, email, password);
+  //     e.preventDefault();
+  //   };
+  // }
+
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const { name, email, password } = user;
 
   const handleNameChange = (e) => {
-    setName(e.target.value);
+    setUser({ name: e.target.value, email, password });
   };
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+    setUser({ name, email: e.target.value, password });
   };
 
   const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+    setUser({ name, email, password: e.target.value });
   };
 
   const handleSubmit = (e) => {
-    console.log(name, email, password);
+    console.log(user);
     e.preventDefault();
   };
 
@@ -36,7 +64,6 @@ export default function From1() {
             value={name}
             type="text"
             name="name"
-            id="name"
             required
           />
         </div>
@@ -47,9 +74,8 @@ export default function From1() {
             className={style.inputMarginLeft}
             onChange={handleEmailChange}
             value={email}
-            type="text"
+            type="email"
             name="name"
-            id="name"
             required
           />
         </div>
@@ -57,11 +83,10 @@ export default function From1() {
         <div className={style.cardMargin}>
           <label>Password : </label>
           <input
-            type="text"
+            type="password"
             onChange={handlePasswordChange}
             value={password}
             name="name"
-            id="name"
             required
           />
         </div>
