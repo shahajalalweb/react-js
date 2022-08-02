@@ -6,3 +6,15 @@
     justify-content: center;
     align-items: center;
 }
+
+.faqs {
+    width: 50rem;
+    max-width: 100%;
+    background-color: white;
+    border-radius: 0.6rem;
+    padding: 1rem;
+  }
+  
+  h1 {
+    text-align: center;
+  }

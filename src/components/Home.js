@@ -1,31 +1,22 @@
-import React from 'react'
-import Todos from './Todos';
+import React, {useState} from 'react'
 
 import style from "../style/home.module.css"
-import NewTodo from './NewTodo';
+import { faqsData } from './data'
+import FAQ from './faq'
 
 
-
-const dummyTodos = [
-    {
-      id : 1, 
-      title : "todo title 1", 
-      desc : "todo1 description is here ...."
-    },
-    {
-      id : 2, 
-      title : "todo title 1", 
-      desc : "todo1 description is here ...."
-    }
-  ]
-
-
+ 
 const Home = () => {
+  const [faqs, setFaqs] = useState(faqsData);
+
   return (
     <div className={style.container}> 
 
-        <NewTodo />    
-        <Todos todos={dummyTodos} />
+      <section className={style.faqs}>
+        {
+          faqs.map(faq => <FAQ  key={faq.id} {...faq} />)
+        }
+      </section> 
 
     </div>
   )
