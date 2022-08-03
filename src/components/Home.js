@@ -1,32 +1,26 @@
-import React from 'react'
-import Todos from './Todos';
+import React, { useState } from 'react'
 
 import style from "../style/home.module.css"
-import NewTodo from './NewTodo';
-
-
-
-const dummyTodos = [
-    {
-      id : 1, 
-      title : "todo title 1", 
-      desc : "todo1 description is here ...."
-    },
-    {
-      id : 2, 
-      title : "todo title 1", 
-      desc : "todo1 description is here ...."
-    }
-  ]
 
 
 const Home = () => {
+
+  const [count, setCount] = useState(0);
+
+
+
+
   return (
     <div className={style.container}> 
+      <div className={style.counter}>
 
-        <NewTodo />    
-        <Todos todos={dummyTodos} />
+        <p className={style.count}>Count : {count}</p>
+        <div className={style.btn}>
+          <button onClick={() => {setCount(count - 1);}} disabled={count === 0}>-</button>
+          <button onClick={() => {setCount(count + 1);}}>+</button>
+        </div>
 
+      </div>
     </div>
   )
 }
