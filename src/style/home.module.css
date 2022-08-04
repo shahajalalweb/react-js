@@ -1,13 +1,13 @@
 .container {
     flex-direction: column;
     background-color: #444;
-    min-height: 100vh;
+    min-height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.counter {
+.fetch {
     width: auto;
     height: auto;
     background: rgb(25, 182, 121);
@@ -17,20 +17,3 @@
 }
 
 
-.count {
-    padding: 10px;
-    color: rgb(11, 13, 14);
-    font-weight: bold;
-}
-
-.btn {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.btn button {
-    padding: 5px 10px;
-    margin: 10px;
-    border-radius: 50%;
-    font-weight: bold;
-}
