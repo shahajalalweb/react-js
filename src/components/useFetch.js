@@ -1,22 +1,21 @@
-import { useState, useEffect } from "react";
+import {useState, useEffect} from 'react'
 
 const useFetch = (url) => {
-  const [data, setData] = useState(null);
+const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  
   useEffect(() => {
+
     fetch(url)
       .then((res) => {
         if (!res.ok) {
           throw Error("fecthing is not successful");
-        } else {
-          return res.json();
         }
+        return res.json();
       })
       .then((data) => {
         setData(data);
-        console.log(data);
         setIsLoading(false);
         setError(null);
       })
@@ -26,7 +25,8 @@ const useFetch = (url) => {
       });
   }, [url]);
 
-  return { data, isLoading, error };
-};
+  return {data, isLoading, error};
 
-export default useFetch;
+}
+
+export default useFetch
