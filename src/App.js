@@ -1,15 +1,13 @@
-import './App.css';
-import Home from './components/Home';
+import React from 'react'
+import Component1 from './components/Component1'
 
 
-
-function App() {
+export const App = () => {
   return (
-    <div className="App">
-      <h1 className='h1'>Normal Counter</h1>
-      <Home />
+    <div>
+        <Component1 />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
