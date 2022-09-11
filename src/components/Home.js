@@ -1,28 +1,17 @@
-import React, { useState } from 'react'
-
-import style from "../style/home.module.css"
-
-
-const Home = () => {
-
-  const [count, setCount] = useState(0);
+import React, {useState} from 'react'
+import { user } from './user';
 
 
+export const Home = () => {
 
+  const [user, setUser] = useState({});
 
   return (
-    <div className={style.container}> 
-      <div className={style.counter}>
-
-        <p className={style.count}>Count : {count}</p>
-        <div className={style.btn}>
-          <button onClick={() => {setCount(count - 1);}} disabled={count === 0}>-</button>
-          <button onClick={() => {setCount(count + 1);}}>+</button>
-        </div>
-
-      </div>
+    <div>
+      <user user={user}/>
     </div>
   )
 }
+
 
 export default Home
