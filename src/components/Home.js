@@ -1,16 +1,17 @@
 import React, {useState} from 'react'
-import { user } from './user';
+import {User} from "./User"
 
 
 export const Home = () => {
 
-  const [user, setUser] = useState({});
+  const [userName, setUserName] = useState("Shahajalal Badsha");
+  const [userID, setUserID] = useState("191");
 
   return (
     <div>
-      <user user={user}/>
+      <User userName={userName} userID={userID} />
     </div>
-  )
+  );
 }
 
 
