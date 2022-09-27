@@ -1,14 +1,8 @@
 import React, {useState, useEffect} from "react"
 import './App.css';
-
+import UserForm from "./components/UserForm";
 
 const URL = "https://rest-api-without-db.herokuapp.com/users/"
-
-
-
-
-
-
 
 function App() {
 
@@ -39,7 +33,6 @@ function App() {
 
   }
 
-
   const handleDelete = (id) => {
     fetch(URL + `/${id}`, {
       method : 'DELETE'
@@ -61,16 +54,35 @@ function App() {
     getAllUsers();
   }, [])
 
+  const addUser = (user) => {
+    fetch(URL, {
+      method: "POST", 
+      headers: {
+        "Content-Type" : "application/json"
+      },
+      body: JSON.stringify(user)
+    })
+    .then((res) => {
+      if(res.status === 201) {
+        getAllUsers();
+      }else {
+        throw Error("could not created new user"); 
+      }
+    })
 
-
-
+    .catch((err) => {
+      setError(err.message);
+    })
+  }
 
   return (
     <div className="App">
-      <h1 className='h1'>Normal Counter</h1>
+      <h1 className='h1'>CRUD oparation</h1>
       <div> 
       {isLoading && <h2>Loading...</h2>}
       {error && <h2>{error}</h2>}
+
+      <UserForm btnText="Add User" handleSubmitData={addUser}/>
 
       <section>
         {users &&
