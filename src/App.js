@@ -10,6 +10,14 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // update 
+  const [selectedUser, setSelectedUser] = useState({
+    username: '',
+    email: ''
+  });
+  const [updateFlag, setUpdateFlag] = useState(false);
+  const [selectedId, setSelectedId] = useState('');
+
   const getAllUsers = () => {
     fetch(URL)
     .then((res) => {
@@ -75,6 +83,38 @@ function App() {
     })
   }
 
+  const handleEdite = (id) => {
+    setSelectedId(id);
+    setUpdateFlag(true);
+    const filteredData = users.filter((user) => user.id === id);
+    setSelectedUser({
+      username: filteredData[0].username,
+      email: filteredData[0].email,
+    })
+    
+  }
+
+  const handleUpdate = (user) => {
+    fetch(URL + `/${selectedId}`, {
+      method: "PUT", 
+      headers: {
+        "Content-Type" : "application/json"
+      },
+      body: JSON.stringify(user)
+    })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("faild to update");
+      }
+      getAllUsers();
+      setUpdateFlag(false);
+    })
+
+    .catch((err) => {
+      setError(err.message);
+    })
+  }
+
   return (
     <div className="App">
       <h1 className='h1'>CRUD oparation</h1>
@@ -82,17 +122,25 @@ function App() {
       {isLoading && <h2>Loading...</h2>}
       {error && <h2>{error}</h2>}
 
-      <UserForm btnText="Add User" handleSubmitData={addUser}/>
+      {
+        updateFlag ? (
+          <UserForm btnText="Update" selectedUser={selectedUser} handleSubmitData={handleUpdate}/>
+        ):(
+          <UserForm btnText="Add User" handleSubmitData={addUser}/>
+        )
+      }
 
       <section>
         {users &&
             users.map((user) => {
               const { id, username, email } = user;
-              return (
+              return (  
                 <article key={id} className="card">
                   <p>{username}</p>
                   <p>{email}</p>
-                  <button className="btn">Update</button>
+                  <button 
+                    className="btn" 
+                    onClick={() => {handleEdite(id)}} >Update</button>
                   <button className="btn" onClick={() => {handleDelete(id)}}>Delete</button>
                 </article>
               );
